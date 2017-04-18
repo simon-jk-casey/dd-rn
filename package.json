@@ -1,0 +1,60 @@
+{
+  "name": "OnsiteHire",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "postinstall": "rndebugger-open",
+    "revert-debugger": "rndebugger-open --revert",
+    "lint": "standard --fix",
+    "test": "ava",
+    "test:watch": "ava --watch",
+    "debug:ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "debug:ios:6+": "npm run debug:ios -- --simulator=\"iPhone 6 Plus\"",
+    "debug:ios:6s": "npm run debug:ios -- --simulator=\"iPhone 6s\"",
+    "debug:ios:6": "npm run debug:ios -- --simulator=\"iPhone 6\"",
+    "debug:ios:5": "npm run debug:ios -- --simulator=\"iPhone 5\"",
+    "debug:ios:ipad2": "npm run debug:ios -- --simulator=\"iPad Pro\"",
+    "debug:android": "adb reverse tcp:8081 tcp:8081 && node_modules/react-native/local-cli/cli.js run-android",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "rc-start": "npm start -- --reset-cache",
+    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
+    "clean-start": "npm run clean && npm run rc-start",
+    "fresh-install": "rm -rf $TMPDIR/react-* && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache clean && npm install",
+    "fresh-start": "npm run fresh-install && npm run rc-start"
+  },
+  "ava": {
+    "babel": "inherit",
+    "files": [
+      "tests/**/*.js",
+      "!tests/_Setup.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill",
+      "react-native-mock/mock",
+      "./tests/_Setup"
+    ]
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-native": "^0.42.3",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "enzyme": "^2.8.0",
+    "flow-bin": "latest",
+    "fs": "0.0.2",
+    "mockery": "^2.0.0",
+    "nyc": "^10.2.0",
+    "path": "^0.12.7",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-native-debugger-open": "^0.3.3",
+    "react-native-mock": "^0.3.1",
+    "standard": "latest"
+  }
+}
