@@ -16,6 +16,7 @@
     "debug:ios:ipad2": "npm run debug:ios -- --simulator=\"iPad Pro\"",
     "debug:android": "adb reverse tcp:8081 tcp:8081 && node_modules/react-native/local-cli/cli.js run-android",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:server": "node ./server/bin/www",
     "rc-start": "npm start -- --reset-cache",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
     "clean-start": "npm run clean && npm run rc-start",
