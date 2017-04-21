@@ -1,0 +1,1 @@
+export const STORE_DRINKS_LIST = 'STORE_DRINKS_LIST'

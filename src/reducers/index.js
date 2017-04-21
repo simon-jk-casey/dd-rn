@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import example from './example'
+import * as drinksReducer from './drinks'
 
-export default combineReducers({
-  example
-})
+export default combineReducers(Object.assign(
+  drinksReducer
+))

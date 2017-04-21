@@ -1,22 +1,21 @@
 import {
   createStore,
-  // applyMiddleware,
+  applyMiddleware,
   compose
 } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 
-import reducers from '../reducers'
+import reducer from '../reducers'
+
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ })
 
 export default function configureStore (initialState) {
-  const middlewares = [
-  ]
-  if (global.__DEV__) {
-    if (global.reduxNativeDevTools) middlewares.push(global.reduxNativeDevTools())
-  }
-  return createStore(
-    reducers,
-    initialState,
-    compose(
-      ...middlewares
+  const enchancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
     )
   )
+  return createStore(reducer, initialState, enchancer)
 }
